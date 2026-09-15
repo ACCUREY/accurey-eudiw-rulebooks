@@ -1,15 +1,12 @@
-name: Deploy to GitHub Pages
+# GitHub Pages deployment is DISABLED.
+# This project is served by Vercel (vct.accurey.com), not GitHub Pages.
+# Kept as a no-op to avoid failing runs. Do not enable Pages.
+name: (disabled) Pages
 on:
-  push: { branches: [main] }
-permissions: { contents: read, pages: write, id-token: write }
+  workflow_dispatch: {}
 jobs:
-  deploy:
+  noop:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-    environment: { name: github-pages, url: "${{ steps.deployment.outputs.page_url }}" }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: "." }
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - run: "echo 'Served by Vercel — Pages disabled'"
