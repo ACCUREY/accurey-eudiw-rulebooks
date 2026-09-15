@@ -5,7 +5,7 @@
   "display": [
     { "lang": "en-US", "name": "Shareholder status", "description": "Proof of shareholding — Accurey Verifiable Equity",
       "rendering": { "simple": { "background_color": "#14263D", "text_color": "#FFFFFF",
-        "logo": { "uri": "https://vct.accurey.com/assets/accurey-logo.png", "alt_text": "Accurey" } } } },
+        "logo": { "uri": "https://vct.accurey.com/assets/logocl.png", "alt_text": "Accurey" } } } },
     { "lang": "fr-FR", "name": "Qualité d'actionnaire", "description": "Preuve de participation au capital — Accurey Verifiable Equity" }
   ],
   "claims": [
