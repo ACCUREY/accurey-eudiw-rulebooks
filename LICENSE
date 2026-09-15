@@ -1,0 +1,25 @@
+Accurey Verifiable Equity — Rulebooks & Type Metadata
+Copyright (c) 2026 Accurey Partners SCSp (Luxembourg, B289636)
+
+This specification work (rulebooks, JSON Schemas and SD-JWT VC type metadata in
+this repository) is licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0).
+
+    https://creativecommons.org/licenses/by/4.0/
+
+You are free to use, share and adapt this material, including for commercial
+purposes, provided you give appropriate credit to Accurey Partners SCSp, provide a
+link to this repository, and indicate if changes were made.
+
+TRADEMARKS. "Accurey" and "Accurey Verifiable Equity" are marks of Accurey
+Partners SCSp. This licence grants no rights to use these marks, except for the
+attribution required above.
+
+ISSUANCE AUTHORITY. This licence covers the specification only. It grants no
+authority to issue attestations under the `vct` namespaces defined herein
+(e.g. https://vct.accurey.com/...). Only Accurey Partners SCSp and issuers it
+authorises may issue valid attestations bound to these namespaces and Accurey's
+signing keys.
+
+NO WARRANTY. The material is provided "as is", without warranty of any kind.
+Accurey is not a state-certified solution nor a qualified trust service provider.

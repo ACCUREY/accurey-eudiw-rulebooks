@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vct.accurey.com/shareholder/1/schema.json",
+  "title": "ACC-SHAREHOLDER-1 — Shareholder Status",
+  "type": "object","additionalProperties": false,
+  "required": ["company","is_shareholder","register_as_of","attestation_legal_category"],
+  "properties": {
+    "company": { "type":"object","additionalProperties":false,"required":["legal_name","identifier","jurisdiction"],
+      "properties": {
+        "legal_name": {"type":"string"},
+        "identifier": {"type":"object","additionalProperties":false,"required":["scheme","value"],
+          "properties":{"scheme":{"type":"string","enum":["lei","gb_company_number","lu_rcs","sg_uen","adgm_number","sa_cr","fr_siren","other"]},"value":{"type":"string"}}},
+        "jurisdiction": {"type":"string","pattern":"^[A-Z]{2}$"} } },
+    "is_shareholder": {"type":"boolean"},
+    "share_class": {"type":"string"},
+    "holding_band": {"type":"string","enum":["lt_1","1_to_5","5_to_10","10_to_25","25_to_50","gte_50"]},
+    "holding_percentage": {"type":"number","minimum":0,"maximum":100},
+    "share_count": {"type":"integer","minimum":0},
+    "voting_rights": {"type":"boolean"},
+    "register_operator": {"type":"string"},
+    "register_as_of": {"type":"string","format":"date-time"},
+    "register_anchor": {"type":"object","additionalProperties":false,
+      "properties":{"hash":{"type":"string","pattern":"^0x[0-9a-fA-F]{64}$"},"chain":{"type":"string"},"tx":{"type":"string"}}},
+    "attestation_legal_category": {"type":"string","enum":["non_qualified_eaa"]},
+    "issuing_country": {"type":"string","pattern":"^[A-Z]{2}$"},
+    "trust_anchor": {"type":"string","format":"uri"}
+  }
+}
