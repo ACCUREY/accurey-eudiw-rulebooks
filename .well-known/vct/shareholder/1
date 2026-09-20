@@ -3,23 +3,43 @@
   "name": "Shareholder status",
   "description": "Attests to a shareholding according to the register maintained on the Accurey platform, without revealing the amount.",
   "display": [
-    { "lang": "en-US", "name": "Shareholder status", "description": "Proof of shareholding — Accurey Verifiable Equity",
-      "rendering": { "simple": { "background_color": "#14263D", "text_color": "#FFFFFF",
-        "logo": { "uri": "https://vct.accurey.com/assets/logocl.png", "alt_text": "Accurey" } } } },
-    { "lang": "fr-FR", "name": "Qualité d'actionnaire", "description": "Preuve de participation au capital — Accurey Verifiable Equity" }
+    {
+      "lang": "en-US",
+      "name": "Shareholder status",
+      "description": "Proof of shareholding — Accurey Verifiable Equity",
+      "rendering": {
+        "simple": {
+          "background_color": "#14263D",
+          "text_color": "#FFFFFF",
+          "logo": {
+            "uri": "https://vct.accurey.com/assets/logocl.png",
+            "alt_text": "Accurey"
+          }
+        }
+      }
+    },
+    {
+      "lang": "fr-FR",
+      "name": "Qualité d'actionnaire",
+      "description": "Preuve de participation au capital — Accurey Verifiable Equity"
+    }
   ],
   "claims": [
-    { "path": ["company","legal_name"], "display": [{ "lang":"en-US","label":"Company" },{ "lang":"fr-FR","label":"Société" }] },
-    { "path": ["company","identifier","value"], "display": [{ "lang":"en-US","label":"Company ID" },{ "lang":"fr-FR","label":"Identifiant société" }] },
-    { "path": ["company","jurisdiction"], "display": [{ "lang":"en-US","label":"Jurisdiction" },{ "lang":"fr-FR","label":"Juridiction" }] },
-    { "path": ["is_shareholder"], "display": [{ "lang":"en-US","label":"Shareholder" },{ "lang":"fr-FR","label":"Actionnaire" }] },
-    { "path": ["share_class"], "display": [{ "lang":"en-US","label":"Share class" },{ "lang":"fr-FR","label":"Catégorie" }] },
-    { "path": ["holding_band"], "display": [{ "lang":"en-US","label":"Holding band" },{ "lang":"fr-FR","label":"Détention" }] },
-    { "path": ["holding_percentage"], "display": [{ "lang":"en-US","label":"Holding %" }] },
-    { "path": ["share_count"], "display": [{ "lang":"en-US","label":"Shares" }] },
-    { "path": ["voting_rights"], "display": [{ "lang":"en-US","label":"Voting rights" }] },
-    { "path": ["register_as_of"], "display": [{ "lang":"en-US","label":"As of" },{ "lang":"fr-FR","label":"Arrêté au" }] },
-    { "path": ["attestation_legal_category"], "display": [{ "lang":"en-US","label":"Legal category" }] }
+    { "path": ["company", "legal_name"], "display": [ { "lang": "en-US", "label": "Company" }, { "lang": "fr-FR", "label": "Société" } ], "sd": "allowed" },
+    { "path": ["company", "identifier", "value"], "display": [ { "lang": "en-US", "label": "Company ID" }, { "lang": "fr-FR", "label": "Identifiant société" } ], "sd": "allowed" },
+    { "path": ["company", "jurisdiction"], "display": [ { "lang": "en-US", "label": "Jurisdiction" }, { "lang": "fr-FR", "label": "Juridiction" } ], "sd": "allowed" },
+    { "path": ["is_shareholder"], "display": [ { "lang": "en-US", "label": "Shareholder" }, { "lang": "fr-FR", "label": "Actionnaire" } ], "sd": "allowed" },
+    { "path": ["share_class"], "display": [ { "lang": "en-US", "label": "Share class" }, { "lang": "fr-FR", "label": "Catégorie" } ], "sd": "allowed" },
+    { "path": ["holding_band"], "display": [ { "lang": "en-US", "label": "Holding band" }, { "lang": "fr-FR", "label": "Détention" } ], "sd": "allowed" },
+    { "path": ["holding_percentage"], "display": [ { "lang": "en-US", "label": "Holding %" } ], "sd": "allowed" },
+    { "path": ["share_count"], "display": [ { "lang": "en-US", "label": "Shares" } ], "sd": "allowed" },
+    { "path": ["voting_rights"], "display": [ { "lang": "en-US", "label": "Voting rights" } ], "sd": "allowed" },
+    { "path": ["register_as_of"], "display": [ { "lang": "en-US", "label": "As of" }, { "lang": "fr-FR", "label": "Arrêté au" } ], "sd": "never" },
+    { "path": ["attestation_legal_category"], "display": [ { "lang": "en-US", "label": "Legal category" } ], "sd": "never" }
   ],
-  "schema_uri": "https://vct.accurey.com/shareholder/1/schema.json"
+  "schema_uri": "https://vct.accurey.com/shareholder/1/schema.json",
+  "mdoc": {
+    "doctype": "com.accurey.shareholder.1",
+    "profile": "https://vct.accurey.com/shareholder/1/mdoc.json"
+  }
 }
