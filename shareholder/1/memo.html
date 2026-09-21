@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Memo Shareholder Attestation (Accurey) — com.accurey.shareholder.1</title>
+<style>body{font-family:Calibri,Helvetica,Arial,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#1b2a3a;line-height:1.45}h1{color:#14263d;margin-bottom:.2rem}h2{color:#14263d;font-size:1.15rem;margin-top:1.6rem}.meta{color:#5e6e7e;font-size:.95rem}table{border-collapse:collapse;width:100%;font-size:.92rem;margin:.6rem 0}td,th{border:1px solid #bbb;padding:.35rem .5rem;vertical-align:top;text-align:left}th{background:#e6ebf2}code{font-family:"Courier New",monospace;font-size:.9em}a{color:#2e6e8e}.dl{margin:.4rem 0 1rem}@media print{.dl{display:none}}</style></head>
+<body>
+<h1>Memo Shareholder Attestation (Accurey)</h1>
+<p class="meta"><em>Interop Week EUDIW — 21–25 September 2026 — optional credential proposal, on the model of the PhotoID memo.</em><br>Publisher: Accurey Partners SCSp, Luxembourg (B289636) — contact: arsene@accurey.com — version 1.0, 21/09/2026</p>
+<p class="dl"><a href="memo.pdf">PDF</a> · <a href="mdoc.json">mdoc.json</a> · <a href="https://vct.accurey.com/shareholder/1">SD-JWT VC type</a></p>
+<h2>1. DocType and namespace</h2>
+<p>The DocType of the shareholder attestation shall be <code>com.accurey.shareholder.1</code>. The attestation uses a single namespace, <code>com.accurey.shareholder.1</code>, and is encoded in mdoc (ISO/IEC 18013-5). An equivalent SD-JWT VC type is published at <a href="https://vct.accurey.com/shareholder/1">https://vct.accurey.com/shareholder/1</a> with the same semantics (nested <code>company</code> object).</p>
+<p>It attests that a natural person holds a shareholding in a given company, according to the share register maintained on the Accurey platform, as of an explicit reference date — without revealing the size of the holding unless the verifier asks for the band. Legal category: non-qualified EAA (eIDAS 2).</p>
+<h2>2. Data elements</h2>
+<p><strong>Table C.1 — Shareholder attestation data elements — Namespace: <code>com.accurey.shareholder.1</code></strong></p>
+<table><thead><tr><th>Identifier</th><th>Definition</th><th>Presence</th><th>Encoding</th></tr></thead><tbody><tr><td><code>company_name</code></td><td>Legal name of the company in which the holder has a shareholding, as recorded in the register</td><td>M</td><td>tstr</td></tr><tr><td><code>company_id</code></td><td>Registration identifier of the company (value), in the scheme given by <code>company_id_scheme</code></td><td>M</td><td>tstr</td></tr><tr><td><code>company_id_scheme</code></td><td>Identifier scheme: lei, gb_company_number, lu_rcs, sg_uen, adgm_number, sa_cr, fr_siren, other</td><td>M</td><td>tstr</td></tr><tr><td><code>company_jurisdiction</code></td><td>Jurisdiction of incorporation of the company, ISO 3166-1 alpha-2</td><td>M</td><td>tstr (ISO 3166-1 alpha-2)</td></tr><tr><td><code>is_shareholder</code></td><td>Whether the holder is recorded as a shareholder in the register at <code>register_as_of</code></td><td>M</td><td>bool</td></tr><tr><td><code>share_class</code></td><td>Class of shares held (e.g. Ordinary A)</td><td>O</td><td>tstr</td></tr><tr><td><code>holding_band</code></td><td>Band of the holding as a share of capital: lt_1, 1_to_5, 5_to_10, 10_to_25, 25_to_50, gte_50. The exact percentage is never carried in this element</td><td>O</td><td>tstr</td></tr><tr><td><code>holding_percentage</code></td><td>Exact holding as a percentage of capital (full profile only, optional)</td><td>O</td><td>number (decimal)</td></tr><tr><td><code>share_count</code></td><td>Number of shares held (optional)</td><td>O</td><td>uint</td></tr><tr><td><code>voting_rights</code></td><td>Whether the shares carry voting rights (optional)</td><td>O</td><td>bool</td></tr><tr><td><code>register_operator</code></td><td>Operator of the share register (“Accurey”)</td><td>O</td><td>tstr</td></tr><tr><td><code>register_as_of</code></td><td>Reference date of the register extract the attestation is based on</td><td>M</td><td>full-date (tag 1004)</td></tr><tr><td><code>attestation_legal_category</code></td><td>eIDAS 2 legal category of the attestation: non_qualified_eaa</td><td>M</td><td>tstr</td></tr><tr><td><code>issuing_country</code></td><td>Country of the issuer, ISO 3166-1 alpha-2</td><td>M</td><td>tstr (ISO 3166-1 alpha-2)</td></tr></tbody></table>
+<p class="meta">M: mandatory &nbsp; O: optional</p>
+<p>No identity attribute is carried in the attestation. The link with the holder is established (a) by device key binding to the wallet that received the attestation and (b) by presenting the attestation together with a PID when the verifier needs the holder's identity; the verifier then matches on PID attributes.</p>
+<h2>3. Presentation profiles (verifier side)</h2>
+<table><thead><tr><th>Profile</th><th>Use</th><th>Elements requested</th></tr></thead><tbody>
+<tr><td>minimal</td><td>Access control, data room, meeting attendance</td><td><code>is_shareholder, company_name, company_id, register_as_of</code></td></tr>
+<tr><td>band</td><td>Beneficial-owner threshold, KYC investor</td><td><code>is_shareholder, company_name, company_id, register_as_of, share_class, holding_band</code></td></tr>
+<tr><td>full</td><td>Due diligence, capital operations</td><td><code>company_name, company_id, company_id_scheme, company_jurisdiction, is_shareholder, share_class, holding_band, register_operator, register_as_of, attestation_legal_category, issuing_country</code></td></tr></tbody></table>
+<p><em>Selective disclosure applies to every element; the test can be performed on selectively chosen attributes by the verifier.</em></p>
+<h2>4. Trust and validity</h2>
+<ul>
+<li>MSO signed with an Accurey Document Signer certificate (EKU 1.0.18013.5.1.2, P-256, ES256) chained to <code>CN=Accurey IACA, O=ACCUREY, C=LU</code>, uploaded to the EUDIW Unfold Trusted List (Trust Management Platform of the Interop Week).</li>
+<li>Validity: validUntil = signed + 48 h; the attestation is short-lived and re-issued from the register on demand. Revocation lists are therefore not used in this version.</li>
+<li>Issuance: OpenID4VCI, pre-authorized code with tx_code, proof types <code>jwt</code> and <code>attestation</code>; credential configuration ids <code>acc_shareholder_mdoc</code> and <code>acc_shareholder_sd_jwt</code>.</li>
+<li>Presentation: OpenID4VP 1.0, DCQL, response_mode <code>direct_post</code> or <code>direct_post.jwt</code>, client_id scheme <code>x509_san_dns</code>.</li>
+</ul>
+<h2>5. Test endpoints (France Identité Playground)</h2>
+<table><thead><tr><th>Role</th><th>URL</th></tr></thead><tbody>
+<tr><td>Issuer + verifier front page (Issue / Verify)</td><td><a href="https://api.playground.france-identite.gouv.fr/accurey/">https://api.playground.france-identite.gouv.fr/accurey/</a></td></tr>
+<tr><td>Credential issuer metadata</td><td><a href="https://api.playground.france-identite.gouv.fr/accurey/issue-demo/.well-known/openid-credential-issuer">…/accurey/issue-demo/.well-known/openid-credential-issuer</a></td></tr>
+<tr><td>PID verifier (mandatory test)</td><td><a href="https://api.playground.france-identite.gouv.fr/accurey/verify-demo/">https://api.playground.france-identite.gouv.fr/accurey/verify-demo/</a></td></tr>
+<tr><td>Rulebook / data elements (JSON)</td><td><a href="https://vct.accurey.com/shareholder/1/mdoc.json">https://vct.accurey.com/shareholder/1/mdoc.json</a></td></tr>
+<tr><td>SD-JWT VC type metadata</td><td><a href="https://vct.accurey.com/shareholder/1">https://vct.accurey.com/shareholder/1</a></td></tr>
+</tbody></table>
+<p class="meta"><em>Interop status: issued to and presented from the Namirial EUDI wallet on 20/09/2026 (mdoc and SD-JWT); PID verification tested with France Identité Partenaires on two ANTS test profiles.</em></p>
+</body></html>
