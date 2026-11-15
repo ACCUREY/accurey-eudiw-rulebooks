@@ -20,4 +20,4 @@ Specification under **CC BY 4.0** (attribution to Accurey required).
 "Accurey" is a trademark. Issuance authority is reserved to Accurey and authorised
 issuers — see `LICENSE`.
 
-© 2026 Accurey Partners SCSp.
+© 2026 Accurey.
