@@ -1,7 +1,7 @@
 # ACC-SHAREHOLDER-1 — Shareholder Status Attestation
 ## Accurey Verifiable Equity · Rulebook v1.0
 
-**Publisher:** Accurey Partners SCSp, Luxembourg (B289636)
+**Publisher:** Accurey Technologies Ltd, Abu Dhabi Global Market (ADGM licence 33668)
 **Legal category:** non-qualified Electronic Attestation of Attributes (EAA), eIDAS 2
 **VCT:** `https://vct.accurey.com/shareholder/1`
 **Schema:** `https://vct.accurey.com/shareholder/1/schema.json`
